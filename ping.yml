@@ -1,3 +1,4 @@
 - hosts: test
-  roles:
-  - ping
+  tasks:
+    - name: Ping using Ansible module
+      ping:

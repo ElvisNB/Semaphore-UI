@@ -14,12 +14,7 @@
       register: script_output
       when: download_result.changed
 
-    - name: Output script result
+    - name: Display script output
       debug:
         msg: "Script output: {{ script_output.stdout }}"
       when: script_output.stdout is defined
-
-    - name: Output script error
-      debug:
-        msg: "Script error: {{ script_output.stderr }}"
-      when: script_output.stderr is defined

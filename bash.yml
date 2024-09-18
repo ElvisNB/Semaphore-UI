@@ -9,10 +9,12 @@
         mode: '0755'
       register: download_result
 
-    - name: Check if demo.sh was downloaded
-      debug:
-        msg: "Downloaded file: {{ download_result.dest }}"
-
     - name: Run demo.sh script
-      command: /tmp/demo.sh
+      shell: /tmp/demo.sh
+      register: script_output
       when: download_result.changed
+
+    - name: Display script output
+      debug:
+        msg: "Script output: {{ script_output.stdout }}"
+      when: script_output.stdout is defined

@@ -1,10 +1,11 @@
 ---
 - name: Run demo.sh script from GitHub
   hosts: test
+  become: yes
   tasks:
     - name: Download demo.sh script
       get_url:
-        url: 'https://raw.githubusercontent.com/ElvisNB/Semaphore-UI/main/demo.sh'
+        url: 'https://raw.githubusercontent.com/ElvisNB/Semaphore-UI/main/demo.sh' 
         dest: /tmp/demo.sh
         mode: '0755'
       register: download_result

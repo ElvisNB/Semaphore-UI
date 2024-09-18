@@ -1,0 +1,13 @@
+pipeline:
+  agent any
+  stages:
+    - stage:
+        steps:
+          - sh: |
+              echo "Starting the script execution..."
+              ./demo.sh
+    - stage:
+        name: "Post Actions"
+        steps:
+          - sh: |
+              echo "Script executed successfully!"

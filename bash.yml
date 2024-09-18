@@ -11,7 +11,7 @@
       register: download_result
 
     - name: Run demo.sh script
-      shell: /usr/bin/bash /tmp/demo.sh
+      shell: /tmp/demo.sh
       register: script_output
       when: download_result.changed
 

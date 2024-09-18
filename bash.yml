@@ -1,13 +1,12 @@
-pipeline:
-  agent any
-  stages:
-    - stage:
-        steps:
-          - sh: |
-              echo "Starting the script execution..."
-              ./demo.sh
-    - stage:
-        name: "Post Actions"
-        steps:
-          - sh: |
-              echo "Script executed successfully!"
+---
+- name: Run demo.sh script
+  hosts: test
+  tasks:
+    - name: Ensure demo.sh script is present
+      copy:
+        src: demo.sh
+        dest: /tmp/demo.sh
+        mode: '0755'
+
+    - name: Run demo.sh script
+      command: /tmp/demo.sh

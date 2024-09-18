@@ -7,6 +7,12 @@
         url: 'https://raw.githubusercontent.com/ElvisNB/Semaphore-UI/main/demo.sh'
         dest: /tmp/demo.sh
         mode: '0755'
+      register: download_result
+
+    - name: Check if demo.sh was downloaded
+      debug:
+        msg: "Downloaded file: {{ download_result.dest }}"
 
     - name: Run demo.sh script
       command: /tmp/demo.sh
+      when: download_result.changed

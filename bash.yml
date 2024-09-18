@@ -4,7 +4,7 @@
   tasks:
     - name: Download demo.sh script
       get_url:
-        url: 'https://raw.githubusercontent.com/username/repo/main/path/to/demo.sh'
+        url: 'https://raw.githubusercontent.com/ElvisNB/Semaphore-UI/main/demo.sh'
         dest: /tmp/demo.sh
         mode: '0755'
 

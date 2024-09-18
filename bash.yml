@@ -1,7 +1,6 @@
 ---
 - name: Run demo.sh script from GitHub
   hosts: test
-  become: yes
   tasks:
     - name: Download demo.sh script
       get_url:

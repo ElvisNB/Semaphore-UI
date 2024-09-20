@@ -2,10 +2,10 @@
 - name: 获取 Windows 主机的 IP 地址
   hosts: win
   gather_facts: no
-  become: true
   tasks:
     - name: 执行 ipconfig 命令
       win_command: ipconfig
+      become: true
       register: ipconfig_result
 
     - name: 打印 IP 地址

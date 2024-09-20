@@ -1,0 +1,35 @@
+- name: 2.执行脚本-cmd
+  win_command: ipconfig
+  register: script_result
+
+- name: 3.打印日志
+  debug:
+    var: script_result.stdout_lines
+
+- name: 使用 PowerShell 创建目录
+  win_shell: New-Item -Path C:\testfile -ItemType Directory
+  register: script_result_ps
+
+- name: 打印日志
+  debug:
+    var: script_result_ps.stdout_lines
+
+- name: 使用 CMD 创建目录
+  win_shell: mkdir C:\testfilecmd
+  register: script_result_cmd
+
+- name: 打印日志
+  debug:
+    var: script_result_cmd.stdout_lines
+
+- name: 4.1 检查 script_resultw 变量
+  ansible.builtin.debug:
+    var: script_resultw
+
+- name: 4.1 执行脚本-powershell (使用 win_shell)
+  win_shell: powershell Get-NetIPAddress
+  register: script_resultw
+
+- name: 5.打印日志
+  ansible.builtin.debug:
+    var: script_resultw.stdout_lines

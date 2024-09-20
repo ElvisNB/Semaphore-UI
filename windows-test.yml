@@ -1,6 +1,6 @@
 ---
 - name: 获取 Windows 主机的 IP 地址
-  hosts: windows_hosts
+  hosts: win
   gather_facts: no
   tasks:
     - name: 执行 ipconfig 命令

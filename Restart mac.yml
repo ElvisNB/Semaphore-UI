@@ -1,9 +1,8 @@
 ---
 - name: Restart Mac
-  hosts: mac_group
+  hosts: mac
   gather_facts: false
   tasks:
     - name: Restart the Mac
       command: shutdown -r now
-      async: 1
-      poll: 0
+      become: yes

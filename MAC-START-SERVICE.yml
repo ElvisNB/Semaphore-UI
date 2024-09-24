@@ -24,7 +24,4 @@
       when: v2rayu_status.rc != 0
 
     - name: Execute TCAgent script
-      shell: /usr/local/TCAgent/bin/agent.sh run
-      become: yes
-      args:
-        executable: /bin/bash
+      command: /usr/local/TCAgent/bin/agent.sh run

@@ -25,5 +25,6 @@
 
     - name: Execute TCAgent script
       shell: /usr/local/TCAgent/bin/agent.sh run
+      become: yes
       args:
         executable: /bin/bash

@@ -1,5 +1,5 @@
 ---
-- name: Restart Mac
+- name: Restart Mac and wait for SSH
   hosts: mac_group
   gather_facts: false
   tasks:
@@ -12,5 +12,9 @@
     - name: Wait for the Mac to become reachable
       wait_for:
         port: 22
-        delay: 10
-        timeout: 300
+        delay: 30  # 等待 30 秒
+        timeout: 300  # 最长等待 300 秒
+        state: started
+      register: wait_result
+      until: wait_result is succeeded
+      retries: 5  # 重试 5 次

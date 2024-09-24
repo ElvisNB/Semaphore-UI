@@ -1,0 +1,24 @@
+---
+- name: Check and start Docker and V2rayU on Mac
+  hosts: mac_group
+  gather_facts: no
+  tasks:
+    - name: Check if Docker is running
+      shell: docker info >/dev/null 2>&1
+      register: docker_status
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Start Docker if not running
+      shell: open -a Docker
+      when: docker_status.rc != 0
+
+    - name: Check if V2rayU is running
+      shell: pgrep -x "V2rayU" > /dev/null
+      register: v2rayu_status
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Start V2rayU if not running
+      shell: open -a V2rayU
+      when: v2rayu_status.rc != 0

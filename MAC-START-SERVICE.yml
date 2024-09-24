@@ -22,3 +22,7 @@
     - name: Start V2rayU if not running
       shell: open -a V2rayU
       when: v2rayu_status.rc != 0
+
+    - name: Run TCAgent
+      shell: sudo /usr/local/TCAgent/bin/agent.sh run
+      become: yes

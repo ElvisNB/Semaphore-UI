@@ -6,12 +6,3 @@
     - name: Restart the Mac
       command: shutdown -r now
       become: yes
-
-    - name: Wait for SSH to come back
-      wait_for:
-        host: "{{ ansible_host }}"
-        port: 22
-        state: started
-        delay: 30
-        timeout: 300
-      delegate_to: localhost

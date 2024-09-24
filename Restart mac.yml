@@ -1,6 +1,6 @@
 ---
 - name: Restart Mac
-  hosts: mac
+  hosts: mac_group
   gather_facts: false
   tasks:
     - name: Restart the Mac

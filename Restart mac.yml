@@ -1,11 +1,16 @@
-- name: Restart the Mac
-  command: shutdown -r now
-  become: yes
-  async: 1
-  poll: 0
+---
+- name: Restart Mac
+  hosts: mac
+  gather_facts: false
+  tasks:
+    - name: Restart the Mac
+      command: shutdown -r now
+      become: yes
+      async: 1
+      poll: 0
 
-- name: Wait for the Mac to become reachable
-  wait_for:
-    port: 22
-    delay: 10
-    timeout: 300
+    - name: Wait for the Mac to become reachable
+      wait_for:
+        port: 22
+        delay: 10
+        timeout: 300

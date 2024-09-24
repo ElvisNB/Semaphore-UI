@@ -23,6 +23,12 @@
       shell: open -a V2rayU
       when: v2rayu_status.rc != 0
 
-    - name: Run TCAgent
-      shell: sudo /usr/local/TCAgent/bin/agent.sh run
-      become: yes
+    - name: Check if TCAgent is running
+      shell: pgrep -f "/usr/local/TCAgent/bin/agent.sh" > /dev/null
+      register: tcagent_status
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Start TCAgent if not running
+      shell: /usr/local/TCAgent/bin/agent.sh run
+      when: tcagent_status.rc != 0

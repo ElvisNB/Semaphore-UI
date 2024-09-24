@@ -2,17 +2,7 @@
 - name: Restart Mac and wait for SSH
   hosts: mac_group
   gather_facts: false
-  strategy:
-    linear: yes  # 确保一次只重启一个节点
   tasks:
     - name: Restart the Mac
       command: shutdown -r now
       become: yes
-
-    - name: Wait for the Mac to become reachable
-      wait_for_connection:
-        delay: 60  # 等待 60 秒
-        timeout: 300  # 最长等待 300 秒
-      register: wait_result
-      until: wait_result is succeeded
-      retries: 10  # 重试 10 次

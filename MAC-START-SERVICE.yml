@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Check if Docker is running
-      shell: docker info >/dev/stdout 2>&1
+      shell: docker info >/dev/stdout
       register: docker_status
       ignore_errors: yes
       changed_when: false
@@ -14,7 +14,7 @@
       when: docker_status.rc != 0
 
     - name: Check if V2rayU is running
-      shell: pgrep -x "V2rayU" > /dev/null
+      shell: pgrep -x "V2rayU" >/dev/stdout
       register: v2rayu_status
       ignore_errors: yes
       changed_when: false
